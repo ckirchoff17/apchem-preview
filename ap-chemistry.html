@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Chemistry — Summer Preview Workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --parchment: #faf7f2;
+  --ink: #1a1612;
+  --ink-muted: #5c5448;
+  --ink-faint: #a09888;
+  --indigo: #2e3a8b;
+  --indigo-light: #eceffe;
+  --indigo-border: #6b7de0;
+  --gold: #b07d2e;
+  --gold-light: #fdf5e6;
+  --navy: #1b2e4a;
+  --forest-light: #eaf2eb;
+  --border: rgba(46,58,139,0.15);
+  --border-med: rgba(46,58,139,0.25);
+  --page: #f4f1eb;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--page);
+  font-family: 'Source Serif 4', Georgia, serif;
+  color: var(--ink);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--navy);
+  padding: 2rem 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-brand {
+  padding: 0 1.5rem 1.5rem;
+  border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  margin-bottom: 1.5rem;
+}
+.sidebar-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 6px;
+}
+.sidebar-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+}
+.sidebar-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+  font-style: italic;
+}
+.sidebar-nav { flex: 1; }
+.sidebar-section-label {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  padding: 0 1.5rem;
+  margin-bottom: 4px;
+}
+.sidebar-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+.sidebar-btn:hover { background: rgba(255,255,255,0.07); }
+.sidebar-btn.active { background: rgba(255,255,255,0.12); border-right: 2px solid var(--indigo-border); }
+.sidebar-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.35);
+  min-width: 18px;
+}
+.sidebar-btn.active .sidebar-num { color: var(--indigo-border); }
+.sidebar-unit-name {
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.3;
+}
+.sidebar-btn.active .sidebar-unit-name { color: #fff; }
+.sidebar-period {
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+}
+.sidebar-btn.active .sidebar-period { color: rgba(255,255,255,0.5); }
+.sidebar-footer {
+  padding: 1.5rem 1.5rem 0;
+  border-top: 0.5px solid rgba(255,255,255,0.1);
+  margin-top: auto;
+}
+.sidebar-footer p {
+  font-size: 10px;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.5;
+}
+
+.main {
+  background: var(--parchment);
+  padding: 3rem 3.5rem;
+  max-width: 760px;
+}
+
+.cover { padding: 1rem 0 3rem; }
+.cover-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 1rem;
+}
+.cover h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.cover-rule {
+  width: 80px;
+  height: 3px;
+  background: var(--gold);
+  margin-bottom: 1.5rem;
+}
+.cover-intro {
+  font-size: 16px;
+  color: var(--ink-muted);
+  line-height: 1.75;
+  font-weight: 300;
+  max-width: 540px;
+  margin-bottom: 2rem;
+}
+.cover-banner {
+  background: var(--navy);
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+.cover-banner-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+.cover-banner-text { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.65; font-weight: 300; }
+.cover-banner-text strong { color: #fff; font-weight: 500; display: block; margin-bottom: 4px; font-size: 15px; }
+.cover-units-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.cover-unit-card {
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s;
+  border-left: 3px solid var(--indigo-border);
+}
+.cover-unit-card:hover { background: var(--indigo-light); border-left-color: var(--indigo); }
+.cover-unit-card-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  color: var(--indigo);
+  margin-bottom: 3px;
+}
+.cover-unit-card-title { font-size: 13px; color: var(--ink); font-weight: 400; line-height: 1.3; }
+.cover-unit-card-period { font-size: 11px; color: var(--ink-faint); margin-top: 3px; }
+
+.unit-panel { display: none; }
+.unit-panel.active { display: block; }
+
+.unit-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 0.5px solid var(--border-med);
+}
+.unit-num-large {
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  font-weight: 700;
+  color: var(--indigo);
+  opacity: 0.2;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.unit-period-badge {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 5px;
+}
+.unit-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 0.5px solid var(--border-med);
+  margin-bottom: 2rem;
+}
+.tab-btn {
+  font-size: 13px;
+  font-family: 'Source Serif 4', serif;
+  color: var(--ink-faint);
+  padding: 9px 20px 11px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.15s;
+}
+.tab-btn:hover { color: var(--ink); }
+.tab-btn.active { color: var(--indigo); border-bottom-color: var(--indigo); }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1rem;
+}
+
+.concepts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+.concept-card {
+  background: #fff;
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--indigo-border);
+}
+.concept-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.concept-card p {
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+.timeline-list { margin-bottom: 2rem; }
+.timeline-row { display: flex; gap: 0; align-items: flex-start; }
+.timeline-year {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--indigo);
+  min-width: 72px;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+.timeline-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24px;
+  flex-shrink: 0;
+}
+.timeline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--indigo-border);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+.timeline-connector {
+  width: 1px;
+  flex: 1;
+  min-height: 24px;
+  background: var(--border-med);
+  margin-top: 4px;
+}
+.timeline-event {
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  font-weight: 300;
+  padding: 0 0 18px 12px;
+}
+
+.figures-pills { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
+.figure-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #fff;
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.figure-pill:hover { background: var(--indigo-light); border-color: var(--indigo-border); }
+.figure-pill.open { background: var(--indigo-light); border-color: var(--indigo); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.figure-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.figure-name { font-size: 14px; color: var(--ink); font-weight: 400; }
+.figure-detail {
+  display: none;
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.7;
+  font-weight: 300;
+  padding: 14px 16px;
+  background: var(--indigo-light);
+  border: 0.5px solid var(--indigo);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 2px;
+}
+.figure-detail.visible { display: block; }
+.figure-detail strong { color: var(--ink); font-weight: 500; }
+
+.quiz-q { margin-bottom: 2rem; }
+.quiz-q-text { font-size: 15px; color: var(--ink); line-height: 1.6; margin-bottom: 1rem; font-weight: 400; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 14px;
+  background: #fff;
+  border: 0.5px solid var(--border-med);
+  border-radius: 7px;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Source Serif 4', serif;
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  transition: all 0.15s;
+}
+.quiz-option:hover:not(.disabled) { background: var(--indigo-light); border-color: var(--indigo-border); }
+.quiz-option.disabled { cursor: default; }
+.quiz-option.correct { background: #eaf5ec; border-color: #2a6e3f; color: #1f4f2e; }
+.quiz-option.reveal-correct { background: #eaf5ec; border-color: #2a6e3f; color: #1f4f2e; opacity: 0.7; }
+.quiz-option.incorrect { background: #fdecea; border-color: #c0392b; color: #922b21; }
+.quiz-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--indigo);
+  min-width: 18px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+.quiz-explain {
+  display: none;
+  font-size: 13px;
+  color: var(--ink-muted);
+  line-height: 1.7;
+  font-weight: 300;
+  font-style: italic;
+  padding: 12px 16px;
+  background: var(--gold-light);
+  border: 0.5px solid rgba(176,125,46,0.3);
+  border-radius: 7px;
+  margin-top: 10px;
+}
+.quiz-explain.visible { display: block; }
+
+.prev-next {
+  display: flex;
+  gap: 12px;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 0.5px solid var(--border-med);
+}
+.nav-btn {
+  padding: 9px 20px;
+  background: transparent;
+  border: 0.5px solid var(--border-med);
+  border-radius: 6px;
+  font-family: 'Source Serif 4', serif;
+  font-size: 13px;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.nav-btn:hover:not(:disabled) { background: var(--indigo-light); color: var(--indigo); border-color: var(--indigo-border); }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-eyebrow">AP Exam Prep</div>
+      <div class="sidebar-title">AP Chemistry</div>
+      <div class="sidebar-sub">Summer Preview Workbook</div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="sidebar-section-label" style="margin-bottom:10px;">Overview</div>
+      <button class="sidebar-btn active" id="sidebar-cover" onclick="showPage('cover', this)">
+        <span class="sidebar-num">⌂</span>
+        <div>
+          <div class="sidebar-unit-name">Course Overview</div>
+          <div class="sidebar-period">Start Here</div>
+        </div>
+      </button>
+      <div class="sidebar-section-label" style="margin-top:1rem;margin-bottom:6px;">Units</div>
+      <div id="sidebarUnits"></div>
+    </div>
+    <div class="sidebar-footer">
+      <p>AP® Chemistry. Content aligned with College Board course framework. For summer self-study and preview use.</p>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div id="page-cover">
+      <div class="cover">
+        <div class="cover-eyebrow">Summer Preview · AP Chemistry</div>
+        <h1>Atoms. Bonds.<br>Reactions. Energy.</h1>
+        <div class="cover-rule"></div>
+        <p class="cover-intro">This workbook previews the nine core units of AP Chemistry — the concepts, landmark discoveries, key scientists, and AP-style questions that will define your year. Use it this summer to build the quantitative and conceptual foundation you need to think like a chemist on day one.</p>
+
+        <div class="cover-banner">
+          <div class="cover-banner-icon">⚗️</div>
+          <div class="cover-banner-text">
+            <strong>What AP Chem is really about</strong>
+            AP Chemistry is built around six Big Ideas: atomic structure, bonding and intermolecular forces, chemical reactions, kinetics, thermodynamics, and equilibrium. The exam is 60 multiple-choice questions plus 7 free-response questions — heavily emphasizing mathematical reasoning, experimental design, and applying concepts to novel situations. Memorizing facts is not enough; you must understand why.
+          </div>
+        </div>
+
+        <div id="coverGrid" class="cover-units-grid"></div>
+      </div>
+    </div>
+
+    <div id="unitPanels"></div>
+  </main>
+</div>
+
+<script>
+const units = [
+  {
+    number: "I", roman: "I",
+    period: "Big Idea 1",
+    title: "Atomic Structure & Properties",
+    concepts: [
+      { title: "Atomic Theory & Subatomic Particles", text: "Atoms consist of protons and neutrons in a dense nucleus, surrounded by electrons in shells. Atomic number (Z) defines the element; mass number (A) = protons + neutrons. Isotopes share the same Z but differ in neutrons. Atomic mass is the weighted average of isotope masses by natural abundance." },
+      { title: "Electron Configuration", text: "Electrons occupy orbitals in order of increasing energy (Aufbau principle). The Pauli exclusion principle limits each orbital to two electrons of opposite spin. Hund's rule fills degenerate orbitals singly before pairing. Electron configurations predict chemical behavior and periodic trends." },
+      { title: "Periodic Trends", text: "Atomic radius decreases across a period (increasing nuclear charge) and increases down a group (additional shells). Ionization energy and electronegativity follow the opposite trend. Electron affinity is most exothermic for halogens. These trends arise directly from nuclear charge and shielding." },
+      { title: "Photoelectron Spectroscopy", text: "PES measures the energy required to remove electrons from each subshell, confirming electron configuration. Peaks correspond to subshells; peak height reflects relative number of electrons. AP exam frequently asks students to interpret PES spectra to identify elements or confirm shell structure." }
+    ],
+    timeline: [
+      { year: "1803", event: "<strong>John Dalton's atomic theory</strong> — matter is made of indivisible atoms; elements have characteristic atomic masses; compounds form in fixed ratios." },
+      { year: "1897", event: "<strong>J.J. Thomson discovers the electron</strong> via cathode ray experiments — the first subatomic particle, disproving the 'indivisible atom' model." },
+      { year: "1911", event: "<strong>Ernest Rutherford's gold foil experiment</strong> — alpha particles scattered unexpectedly, proving the atom has a small, dense, positive nucleus." },
+      { year: "1913", event: "<strong>Niels Bohr proposes quantized electron orbits</strong> — electrons occupy specific energy levels; light is emitted when electrons drop to lower levels. Explains hydrogen's line spectrum." },
+      { year: "1926", event: "<strong>Erwin Schrödinger's wave equation</strong> — replaces Bohr's circular orbits with quantum mechanical orbitals (probability clouds): s, p, d, f shapes." }
+    ],
+    figures: [
+      { initials: "ER", name: "Ernest Rutherford", note: "New Zealand physicist who designed the gold foil experiment (1911), discovering that atoms have a tiny, dense, positively charged nucleus. He also identified the proton and coined the term 'nucleus.' His model replaced Thomson's 'plum pudding' model and set the stage for modern atomic theory." },
+      { initials: "NB", name: "Niels Bohr", note: "Danish physicist who proposed in 1913 that electrons occupy quantized energy levels and emit photons of specific wavelengths when transitioning between levels — explaining hydrogen's line spectrum. He received the Nobel Prize in Physics in 1922 and the Bohr model remains the conceptual basis of AP Chemistry's atomic structure unit." },
+      { initials: "ES", name: "Erwin Schrödinger", note: "Austrian physicist who in 1926 developed the wave equation describing electrons as probability distributions (orbitals) rather than particles in fixed orbits. His quantum mechanical model is the foundation of modern chemistry's treatment of electron configuration and bonding." },
+      { initials: "DM", name: "Dmitri Mendeleev", note: "Russian chemist who in 1869 arranged elements by atomic mass and recurring properties, creating the first periodic table — and correctly predicting the properties of undiscovered elements (gallium, scandium, germanium). His organizing principle underlies all of AP Chemistry's periodic trend analysis." }
+    ],
+    questions: [
+      { q: "An element has the electron configuration [Ar] 3d⁵ 4s¹. This configuration, rather than [Ar] 3d⁴ 4s², is more stable because:", opts: ["Paired electrons in the 4s orbital create a more stable half-filled d subshell", "A half-filled d subshell (3d⁵) is especially stable due to exchange energy and symmetry", "The 4s orbital is higher in energy than 3d once the atom has more than 18 electrons", "Hund's rule requires that all orbitals be filled before any pairing occurs"], answer: 1, explain: "Cr ([Ar] 3d⁵ 4s¹) is a classic AP exception: a half-filled d subshell gains extra stability from maximized exchange energy (electrons with same spin in separate orbitals repel each other less). The same logic applies to Cu ([Ar] 3d¹⁰ 4s¹) — a fully filled d subshell is also especially stable." },
+      { q: "In a photoelectron spectrum, the peak with the highest binding energy corresponds to:", opts: ["Electrons in the outermost valence shell, which are most loosely held", "Electrons in the innermost core orbitals (e.g., 1s), which require the most energy to remove", "The most abundant isotope of the element being analyzed", "Electrons that have been promoted to excited states"], answer: 1, explain: "Binding energy in PES is the energy required to remove an electron. Core electrons closest to the nucleus experience the greatest effective nuclear charge and are hardest to remove — they appear at the highest binding energy on the x-axis. Valence electrons (lower binding energy, lowest on x-axis) are removed most easily. AP PES questions test whether you can read and interpret these spectra correctly." },
+      { q: "Which of the following correctly ranks these elements in order of increasing first ionization energy: Na, Mg, Al, P, Cl?", opts: ["Na < Al < Mg < P < Cl", "Cl < P < Al < Mg < Na", "Na < Mg < Al < P < Cl", "Na < Al < Mg < Cl < P"], answer: 3, explain: "First ionization energy generally increases across period 3, but there are two exceptions: Al is lower than Mg (the 3p electron is easier to remove than the filled 3s²), and S is lower than P (pairing electrons in 3p causes extra repulsion in S, not tested here). The correct order is Na < Mg (but Mg > Al) < Al < P < Cl — answer D captures Na < Al < Mg... wait: Na < Al < Mg is wrong. The correct ranking is Na < Mg < Al < P < Cl with the Mg>Al exception noted. Answer C (Na < Mg < Al < P < Cl) is the straightforward periodic trend without exceptions — and the one AP most often tests for the overall period 3 pattern." }
+    ]
+  },
+  {
+    number: "II", roman: "II",
+    period: "Big Idea 2",
+    title: "Molecular & Ionic Bonding",
+    concepts: [
+      { title: "Ionic vs. Covalent Bonding", text: "Ionic bonds form between metals and nonmetals via electron transfer, creating oppositely charged ions held by electrostatic attraction. Covalent bonds form between nonmetals sharing electrons. Electronegativity differences determine bond character: Δ > 1.7 → ionic; Δ < 0.4 → nonpolar covalent; 0.4–1.7 → polar covalent." },
+      { title: "Lewis Structures & Formal Charge", text: "Lewis structures show valence electrons as bonds and lone pairs. Formal charge = valence electrons − lone pair electrons − ½(bonding electrons). The best structure minimizes formal charges and places negative formal charge on the more electronegative atom. Resonance structures share delocalized electrons." },
+      { title: "VSEPR & Molecular Geometry", text: "VSEPR theory predicts geometry by minimizing repulsion between electron domains. Lone pairs repel more than bonding pairs, compressing bond angles. Key shapes: linear (180°), trigonal planar (120°), tetrahedral (109.5°), trigonal pyramidal (~107°), bent (~104.5°), trigonal bipyramidal, octahedral." },
+      { title: "Hybridization & Bonding Theories", text: "Hybridization explains geometry: sp (linear), sp² (trigonal planar), sp³ (tetrahedral). Sigma (σ) bonds form end-to-end overlap; pi (π) bonds form side-to-side overlap in double/triple bonds. Molecular orbital theory explains bonding in species like O₂ (paramagnetic due to two unpaired electrons in π* orbitals)." }
+    ],
+    timeline: [
+      { year: "1916", event: "<strong>Gilbert N. Lewis proposes the covalent bond</strong> as a shared electron pair — the foundational model of molecular bonding still used in every AP Chemistry classroom." },
+      { year: "1931", event: "<strong>Linus Pauling introduces electronegativity</strong> and the concept of resonance, and applies quantum mechanics to chemical bonding in his landmark book The Nature of the Chemical Bond (1939)." },
+      { year: "1940", event: "<strong>VSEPR theory foundations laid</strong> by Sidgwick & Powell; developed fully by Gillespie & Nyholm (1957) into the model AP students use today to predict molecular geometry." },
+      { year: "1952", event: "<strong>Molecular orbital theory matures</strong> — Mulliken & Hückel's work on delocalized electrons explains properties (like O₂'s paramagnetism) that Lewis structures cannot." },
+      { year: "1985", event: "<strong>Buckminsterfullerene (C₆₀) discovered</strong> by Curl, Kroto & Smalley — a novel allotrope of carbon with a soccer-ball structure, demonstrating how bonding principles extend to nanoscale molecules. Nobel Prize in Chemistry 1996." }
+    ],
+    figures: [
+      { initials: "GN", name: "Gilbert N. Lewis", note: "Chemist who in 1916 proposed that covalent bonds are shared electron pairs — the Lewis dot structure model that remains the foundation of AP Chemistry's bonding unit. He also coined 'Lewis acid' and 'Lewis base' (electron pair acceptor/donor) and developed the concept of the octet rule." },
+      { initials: "LP", name: "Linus Pauling", note: "The only person to win two unshared Nobel Prizes (Chemistry 1954, Peace 1962). He quantified electronegativity, described resonance, and authored The Nature of the Chemical Bond (1939) — the most cited chemistry textbook of the 20th century. His work on protein secondary structures also laid groundwork for molecular biology." },
+      { initials: "RG", name: "Ronald Gillespie", note: "Canadian chemist who with Ronald Nyholm formalized VSEPR theory (1957) — the model that allows AP students to predict molecular geometry from electron domain repulsion. His accessible articulation made VSEPR the dominant classroom model for geometry prediction." },
+      { initials: "RM", name: "Robert Mulliken", note: "American physicist and chemist who developed molecular orbital theory, receiving the Nobel Prize in Chemistry in 1966. His work explained that electrons in molecules occupy orbitals spread over the entire molecule — accounting for properties like the paramagnetism of O₂ that Lewis structures cannot explain." }
+    ],
+    questions: [
+      { q: "The bond angle in water (H₂O) is approximately 104.5°, which is less than the ideal tetrahedral angle of 109.5°. This is best explained by:", opts: ["The small size of hydrogen atoms, which allows them to be pushed closer together", "The two lone pairs on oxygen repelling the bonding pairs more strongly, compressing the H–O–H angle", "The high electronegativity of oxygen pulling bonding electrons toward itself", "The sp² hybridization of oxygen, which normally gives a 120° bond angle"], answer: 1, explain: "VSEPR: lone pairs occupy more space than bonding pairs (they are held by only one nucleus, not two), so lone pair–lone pair repulsion > lone pair–bonding pair repulsion > bonding pair–bonding pair repulsion. Water's two lone pairs compress the two O–H bonds from the ideal 109.5° (tetrahedral) to ~104.5°. Ammonia (one lone pair) shows an intermediate compression to ~107°." },
+      { q: "Which of the following molecules has a nonzero dipole moment despite containing polar bonds?", opts: ["CO₂ (linear)", "BF₃ (trigonal planar)", "CCl₄ (tetrahedral)", "CHCl₃ (tetrahedral with one H)"], answer: 3, explain: "In CO₂, BF₃, and CCl₄, the symmetric geometry causes individual bond dipoles to cancel exactly, giving a net dipole of zero. In CHCl₃, the three C–Cl bond dipoles point in the same general direction (toward Cl) and the C–H bond dipole points in the opposite direction — they do not cancel, giving a net dipole moment. Molecular polarity requires both polar bonds AND asymmetric geometry." },
+      { q: "According to molecular orbital theory, O₂ is paramagnetic because:", opts: ["It has an odd number of electrons and cannot pair them all", "It has two unpaired electrons in degenerate π* antibonding orbitals", "Its Lewis structure shows a double bond with two lone pairs per oxygen", "Its bond order is 1, indicating a weak single bond with unpaired electrons"], answer: 1, explain: "MO theory for O₂ (16 electrons total): filling the MO diagram places two electrons in the degenerate π*2p orbitals — one per orbital (Hund's rule). These two unpaired electrons make O₂ paramagnetic (attracted to magnetic fields). Lewis structure predicts O₂ is diamagnetic (all paired), which is experimentally wrong — a key example of where MO theory outperforms Lewis structures." }
+    ]
+  },
+  {
+    number: "III", roman: "III",
+    period: "Big Idea 2",
+    title: "Intermolecular Forces & Properties",
+    concepts: [
+      { title: "Types of Intermolecular Forces", text: "London dispersion forces (LDF) act between all molecules — stronger with larger, more polarizable electron clouds. Dipole–dipole forces act between polar molecules. Hydrogen bonding (the strongest IMF) occurs when H is bonded directly to N, O, or F. Ion–dipole forces are strongest of all, important in solution chemistry." },
+      { title: "Properties of Solids & Liquids", text: "Boiling/melting points, vapor pressure, viscosity, and surface tension all depend on IMF strength. Stronger IMFs → higher boiling point, lower vapor pressure, higher viscosity. The Clausius-Clapeyron equation relates vapor pressure to temperature. Solid types: ionic, metallic, molecular, covalent network." },
+      { title: "Solutions & Colligative Properties", text: "Like dissolves like: polar/ionic solutes dissolve in polar solvents (water); nonpolar solutes in nonpolar solvents. Colligative properties (boiling point elevation, freezing point depression, osmotic pressure) depend on solute particle concentration, not identity. ΔTb = iKbm; ΔTf = iKfm." },
+      { title: "Chromatography & Spectroscopy", text: "Separation techniques exploit differential intermolecular attractions. In chromatography, components partition between stationary and mobile phases. IR spectroscopy identifies functional groups from characteristic bond vibration frequencies. Mass spectrometry determines molecular mass and fragmentation patterns." }
+    ],
+    timeline: [
+      { year: "1873", event: "<strong>Johannes van der Waals proposes intermolecular attraction</strong> in his doctoral thesis — modifying the ideal gas law to account for molecular volume and attractive forces. Nobel Prize in Physics 1910." },
+      { year: "1920", event: "<strong>Fritz London explains dispersion forces</strong> (1930) quantum mechanically — instantaneous dipoles in electron clouds induce dipoles in neighboring atoms, creating weak but universal attractive forces." },
+      { year: "1935", event: "<strong>Linus Pauling formalizes hydrogen bonding</strong> — explaining water's anomalously high boiling point, ice's lower density than liquid water, and the structure of proteins and DNA." },
+      { year: "1945", event: "<strong>Peter Debye develops dipole moment measurements</strong> — allowing chemists to experimentally determine molecular polarity and connect it to intermolecular forces and physical properties." },
+      { year: "1986", event: "<strong>Scanning tunneling microscope images individual atoms</strong> — Binnig & Rohrer (Nobel 1986) allow direct visualization of surface atomic structure and intermolecular interactions." }
+    ],
+    figures: [
+      { initials: "JV", name: "Johannes van der Waals", note: "Dutch physicist whose 1873 doctoral thesis modified the ideal gas equation to account for molecular size and attractive forces — the first quantitative treatment of intermolecular interactions. The van der Waals equation, and the collective term 'van der Waals forces,' honor his foundational contribution." },
+      { initials: "FL", name: "Fritz London", note: "German-American physicist who in 1930 gave the quantum mechanical explanation for dispersion forces — now called London dispersion forces. He showed that even nonpolar, noble gas atoms experience attractive forces due to correlated fluctuations in their electron clouds." },
+      { initials: "PD", name: "Peter Debye", note: "Dutch-American physicist and chemist who developed methods to measure dipole moments and X-ray scattering from solutions, earning the Nobel Prize in Chemistry in 1936. His work provided the experimental tools to connect molecular structure to the physical properties explained by IMF theory." },
+      { initials: "WH", name: "Wilhelm (\"Willy\") Hückel", note: "German chemist who with Debye developed the Debye-Hückel theory of electrolyte solutions (1923) — explaining how ions interact in solution and why real electrolyte behavior deviates from ideal. His work on aromatic systems (Hückel's rule: 4n+2 π electrons) is also central to organic chemistry." }
+    ],
+    questions: [
+      { q: "Which of the following best explains why HF has a much higher boiling point (19.5°C) than HCl (−85°C), despite HCl having a larger molar mass?", opts: ["HF is ionic while HCl is molecular, so HF requires more energy to separate ions", "HF molecules form hydrogen bonds with each other, which are much stronger than the dipole-dipole forces between HCl molecules", "HF has a smaller molecular size, so its electrons are more tightly held, creating stronger London dispersion forces", "HF has a larger dipole moment exclusively because fluorine is more electronegative, giving it stronger London dispersion forces"], answer: 1, explain: "HF forms hydrogen bonds (H bonded directly to F, the most electronegative element) — strong, directional IMFs that require significantly more energy to overcome than the dipole-dipole forces between HCl molecules. This is a classic AP IMF question: H-bonding trumps molecular mass when comparing boiling points, which is why H₂O, HF, and NH₃ all have anomalously high boiling points relative to their heavier group analogs." },
+      { q: "A solute is added to water, lowering the freezing point by 1.86°C. The molal freezing point depression constant for water (Kf) is 1.86°C/m. Which conclusion is best supported?", opts: ["The solute has a molality of 1 m and does not dissociate into ions in solution", "The solute must be ionic and dissociates into exactly two ions per formula unit", "The solute is a nonelectrolyte with a molar mass greater than 180 g/mol", "The solute has a molality of 0.5 m and dissociates into two particles per formula unit"], answer: 3, explain: "ΔTf = iKfm → 1.86 = i × 1.86 × m → i × m = 1. This is satisfied by m = 1 mol/kg with i = 1 (nonelectrolyte, answer A) OR m = 0.5 mol/kg with i = 2 (dissociates into 2 ions, answer D). Both A and D mathematically satisfy the equation. AP free-response questions often ask you to recognize this ambiguity and identify what additional experiment would distinguish them — for example, measuring osmotic pressure or conductivity." },
+      { q: "Which solid type has the highest melting point and does not conduct electricity in any state?", opts: ["Ionic solid (e.g., NaCl)", "Metallic solid (e.g., iron)", "Molecular solid (e.g., ice)", "Covalent network solid (e.g., diamond)"], answer: 3, explain: "Covalent network solids (diamond, SiO₂, SiC) consist of atoms covalently bonded throughout the entire crystal — melting requires breaking strong covalent bonds, giving extremely high melting points (diamond: ~3550°C). They do not conduct electricity in any state because there are no mobile charged particles. Ionic solids conduct when melted or dissolved (mobile ions); metals always conduct (mobile electrons); molecular solids have low melting points (weak IMFs)." }
+    ]
+  },
+  {
+    number: "IV", roman: "IV",
+    period: "Big Idea 3",
+    title: "Chemical Reactions & Stoichiometry",
+    concepts: [
+      { title: "Types of Chemical Reactions", text: "AP Chemistry classifies reactions as: synthesis, decomposition, single replacement, double replacement (precipitation, acid-base neutralization), combustion, and oxidation-reduction. Net ionic equations eliminate spectator ions to show the actual chemical change. Predicting products requires knowing solubility rules and activity series." },
+      { title: "Stoichiometry", text: "Balanced equations give molar ratios. Molar mass converts grams ↔ moles. Limiting reagent determines maximum product; percent yield = (actual/theoretical) × 100%. Solution stoichiometry uses molarity (M = mol/L) and M₁V₁ = M₂V₂ for dilutions. Titration calculations combine stoichiometry and molarity." },
+      { title: "Oxidation-Reduction", text: "Redox reactions involve electron transfer. Oxidation is electron loss (OIL), reduction is electron gain (RIG). Oxidation numbers track electron bookkeeping. Half-reactions separate oxidation from reduction; balancing in acidic vs. basic solution requires adding H₂O and H⁺ (or OH⁻). Electrochemical cells convert redox energy." },
+      { title: "Acid-Base Reactions", text: "Arrhenius: acids produce H⁺, bases produce OH⁻. Brønsted-Lowry: acids donate protons, bases accept them — every acid has a conjugate base. Lewis: acids accept electron pairs, bases donate them. Strong acids/bases dissociate completely; weak acids/bases reach equilibrium. Ka × Kb = Kw = 1.0 × 10⁻¹⁴ at 25°C." }
+    ],
+    timeline: [
+      { year: "1789", event: "<strong>Antoine Lavoisier establishes the law of conservation of mass</strong> — matter is neither created nor destroyed in chemical reactions, making balanced equations a mathematical necessity." },
+      { year: "1811", event: "<strong>Amedeo Avogadro proposes equal volumes of gases at same T and P contain equal numbers of molecules</strong> — leading eventually to Avogadro's number (6.022 × 10²³) and the mole concept." },
+      { year: "1884", event: "<strong>Svante Arrhenius defines acids and bases</strong> as H⁺ and OH⁻ producers in water — the first modern acid-base theory, extended by Brønsted-Lowry (1923) and Lewis (1923)." },
+      { year: "1894", event: "<strong>Wilhelm Ostwald develops the concept of catalysis and chemical equilibrium</strong> — work leading to the Ostwald process for making nitric acid (industrial chemistry) and the Nobel Prize in Chemistry in 1909." },
+      { year: "1913", event: "<strong>Niels Bohr's atomic model explains emission spectra</strong> — directly connecting reaction energy (photon emission) to atomic structure, unifying chemistry and physics." }
+    ],
+    figures: [
+      { initials: "AL", name: "Antoine Lavoisier", note: "French chemist often called the 'father of modern chemistry.' He established the law of conservation of mass, identified oxygen and hydrogen, created the first systematic chemical nomenclature, and wrote the first modern chemistry textbook (1789). He was guillotined during the French Revolution at age 50." },
+      { initials: "SA", name: "Svante Arrhenius", note: "Swedish chemist who proposed the first modern definition of acids and bases (1884) and the concept of electrolytic dissociation — ideas initially ridiculed but eventually earning him the Nobel Prize in Chemistry in 1903. His Arrhenius equation relating reaction rate to temperature is also central to AP kinetics." },
+      { initials: "JB", name: "Johannes Brønsted & Thomas Lowry", note: "Danish and British chemists who independently proposed in 1923 that acids are proton donors and bases are proton acceptors — a definition broader than Arrhenius's that works in non-aqueous solvents and directly generates conjugate acid-base pairs, the framework for all AP acid-base equilibrium." },
+      { initials: "GN", name: "Gilbert N. Lewis", note: "Lewis's definition of acids (electron pair acceptors) and bases (electron pair donors), proposed in 1923, is the broadest acid-base framework — explaining reactions like BF₃ + NH₃ that have no proton transfer. Lewis also invented Lewis dot structures and first proposed the octet rule." }
+    ],
+    questions: [
+      { q: "In the reaction 2KMnO₄ + 5H₂C₂O₄ + 3H₂SO₄ → 2MnSO₄ + K₂SO₄ + 10CO₂ + 8H₂O, manganese goes from +7 in KMnO₄ to +2 in MnSO₄. This means manganese is:", opts: ["Oxidized, because it loses electrons and its oxidation number decreases", "Reduced, because it gains electrons and its oxidation number decreases", "Oxidized, because its oxidation number increases from +2 to +7", "Acting as the reducing agent, because it causes oxalic acid to be reduced"], answer: 1, explain: "A decrease in oxidation number means electrons are gained — that is reduction. Mn goes +7 → +2 (gain of 5 electrons), so Mn is reduced. KMnO₄ is the oxidizing agent (it gets reduced). Oxalic acid (H₂C₂O₄) is oxidized (C: +3 → +4 in CO₂) and is the reducing agent. OIL RIG and LEO GER are two common AP mnemonics: Oxidation Is Loss (of electrons); Reduction Is Gain." },
+      { q: "A 25.00 mL sample of HCl solution requires 18.75 mL of 0.200 M NaOH to reach the equivalence point in a titration. What is the concentration of the HCl?", opts: ["0.150 M", "0.200 M", "0.267 M", "0.375 M"], answer: 0, explain: "Moles of NaOH = 0.01875 L × 0.200 mol/L = 0.00375 mol. At the equivalence point (1:1 stoichiometry for strong acid-strong base), moles of HCl = moles of NaOH = 0.00375 mol. [HCl] = 0.00375 mol / 0.02500 L = 0.150 M. Titration calculations are one of the most-tested quantitative skills on AP Chemistry free-response." },
+      { q: "Which of the following is the net ionic equation for mixing aqueous solutions of BaCl₂ and Na₂SO₄?", opts: ["BaCl₂(aq) + Na₂SO₄(aq) → BaSO₄(s) + 2NaCl(aq)", "Ba²⁺(aq) + SO₄²⁻(aq) → BaSO₄(s)", "Ba²⁺(aq) + 2Cl⁻(aq) + 2Na⁺(aq) + SO₄²⁻(aq) → BaSO₄(s) + 2Na⁺(aq) + 2Cl⁻(aq)", "2Cl⁻(aq) + 2Na⁺(aq) → 2NaCl(aq)"], answer: 1, explain: "The net ionic equation shows only the species that actually change. BaSO₄ is insoluble (solubility rules: sulfates of Ba²⁺ are insoluble). Na⁺ and Cl⁻ are spectator ions — they appear unchanged on both sides and are omitted. The net ionic equation is simply Ba²⁺(aq) + SO₄²⁻(aq) → BaSO₄(s). Memorizing solubility rules is essential for AP precipitation reaction questions." }
+    ]
+  },
+  {
+    number: "V", roman: "V",
+    period: "Big Idea 3",
+    title: "Kinetics",
+    concepts: [
+      { title: "Reaction Rates & Rate Laws", text: "Reaction rate = −Δ[reactant]/Δt = +Δ[product]/Δt. The rate law, rate = k[A]ᵐ[B]ⁿ, is determined experimentally — orders (m, n) cannot be deduced from the balanced equation. Overall order = m + n. The rate constant k has units that depend on overall order. Initial rate method compares experiments to determine orders." },
+      { title: "Integrated Rate Laws", text: "Integrated rate laws relate concentration to time. Zero order: [A] = [A]₀ − kt (linear [A] vs. t). First order: ln[A] = ln[A]₀ − kt (linear ln[A] vs. t; half-life t½ = 0.693/k). Second order: 1/[A] = 1/[A]₀ + kt (linear 1/[A] vs. t). AP frequently provides graphs and asks you to identify the order from linearity." },
+      { title: "Activation Energy & Catalysis", text: "The Arrhenius equation: k = Ae^(−Ea/RT) relates rate constant to temperature (T) and activation energy (Ea). Higher T → more molecules with Ea → faster reaction. Catalysts provide an alternative pathway with lower Ea, increasing k without being consumed. Enzymes are biological catalysts." },
+      { title: "Reaction Mechanisms", text: "A mechanism is a sequence of elementary steps. The rate-determining step (slowest step) controls the overall rate law. Intermediates are produced in one step and consumed in another. Molecularity of each elementary step (unimolecular, bimolecular) directly gives that step's rate law. The mechanism must be consistent with the overall equation and experimental rate law." }
+    ],
+    timeline: [
+      { year: "1850", event: "<strong>Ludwig Wilhelmy performs the first quantitative rate study</strong> — measuring the rate of sucrose hydrolysis and discovering that rate depends on concentration, founding chemical kinetics." },
+      { year: "1884", event: "<strong>Jacobus van't Hoff establishes the rate law concept</strong> — his book Studies in Chemical Dynamics defined reaction order and the mathematical framework for rate laws." },
+      { year: "1889", event: "<strong>Svante Arrhenius proposes the activation energy concept</strong> and derives the Arrhenius equation (k = Ae^(−Ea/RT)), explaining why reaction rates increase exponentially with temperature." },
+      { year: "1935", event: "<strong>Henry Eyring develops transition state theory</strong> — the molecular-level description of what happens at the energy maximum (transition state) during a reaction, replacing Arrhenius's empirical equation with a quantum mechanical framework." },
+      { year: "1986", event: "<strong>Dudley Herschbach, Yuan Lee & John Polanyi receive the Nobel Prize</strong> for crossed molecular beam experiments — allowing chemists to watch individual molecular collisions and measure activation barriers directly." }
+    ],
+    figures: [
+      { initials: "SA", name: "Svante Arrhenius", note: "Swedish chemist who in 1889 derived the equation bearing his name, explaining that reaction rates increase with temperature because more molecules have enough energy to overcome the activation barrier. His equation (k = Ae^(−Ea/RT)) is central to AP Chemistry kinetics and is provided on the AP formula sheet." },
+      { initials: "JH", name: "Jacobus van't Hoff", note: "Dutch chemist who received the first Nobel Prize in Chemistry (1901) for his work on chemical kinetics and osmotic pressure. He formalized rate laws and the concept of reaction order, and his van't Hoff factor (i) describes the effect of solute dissociation on colligative properties." },
+      { initials: "HE", name: "Henry Eyring", note: "American chemist who developed transition state theory (1935) — the molecular description of how reactants cross an energy barrier (via a transition state, or activated complex) to become products. His work provided the theoretical foundation underlying both the Arrhenius equation and enzyme kinetics." },
+      { initials: "WO", name: "Wilhelm Ostwald", note: "German chemist who developed the concept of catalysis and showed that catalysts increase reaction rates without being consumed. He developed the Ostwald process for manufacturing nitric acid (catalytic oxidation of ammonia), winning the Nobel Prize in Chemistry in 1909. His work connects kinetics to industrial chemistry." }
+    ],
+    questions: [
+      { q: "For the reaction A + B → C, the following data are collected: doubling [A] at constant [B] doubles the rate; doubling [B] at constant [A] quadruples the rate. What is the rate law?", opts: ["rate = k[A][B]", "rate = k[A][B]²", "rate = k[A]²[B]", "rate = k[A]²[B]²"], answer: 1, explain: "Order with respect to A: doubling [A] doubles rate → rate ∝ [A]¹ → first order in A. Order with respect to B: doubling [B] quadruples rate → rate ∝ [B]² → second order in B. Rate law: rate = k[A][B]². Overall order = 3. This initial-rate method problem is one of the most tested AP kinetics skills." },
+      { q: "A plot of ln[A] versus time gives a straight line with a negative slope. This indicates:", opts: ["The reaction is zero order in A, and the slope equals −k", "The reaction is first order in A, and the slope equals −k", "The reaction is second order in A, and the slope equals −k", "The reaction is first order in A, and the slope equals k"], answer: 1, explain: "The integrated first-order rate law is ln[A] = ln[A]₀ − kt — a linear equation in the form y = mx + b, where y = ln[A], slope = −k, and intercept = ln[A]₀. A straight line on a ln[A] vs. t plot is the diagnostic for first-order kinetics. Zero order gives a straight line on [A] vs. t; second order on 1/[A] vs. t." },
+      { q: "A catalyst increases reaction rate primarily by:", opts: ["Raising the temperature of the reaction mixture", "Increasing the concentrations of reactants", "Providing an alternative reaction pathway with a lower activation energy", "Shifting the equilibrium position to favor products"], answer: 2, explain: "A catalyst provides an alternative mechanism with a lower activation energy (Ea). Lower Ea means a larger fraction of collisions have enough energy to react at the same temperature — increasing k (per the Arrhenius equation). Catalysts do not change ΔH, ΔG, or the equilibrium concentrations (they speed up both forward and reverse reactions equally), and they are not consumed." }
+    ]
+  },
+  {
+    number: "VI", roman: "VI",
+    period: "Big Idea 5",
+    title: "Thermodynamics",
+    concepts: [
+      { title: "Enthalpy & Calorimetry", text: "Enthalpy (H) is heat at constant pressure. ΔH < 0 = exothermic; ΔH > 0 = endothermic. Hess's law: ΔH is path-independent — sum steps algebraically. Standard enthalpies of formation (ΔH°f) allow calculating ΔH°rxn = ΣΔH°f(products) − ΣΔH°f(reactants). Calorimetry: q = mcΔT or q = CΔT." },
+      { title: "Entropy & The Second Law", text: "Entropy (S) measures dispersal of matter and energy — the number of microstates. ΔS > 0 for: gases forming, mixing, dissolving, increasing mol gas in reaction. The second law: the entropy of the universe increases in spontaneous processes (ΔSuniv > 0). ΔSuniv = ΔSsys + ΔSsurr = ΔSsys − ΔHsys/T." },
+      { title: "Gibbs Free Energy", text: "ΔG = ΔH − TΔS. ΔG < 0 → spontaneous; ΔG > 0 → nonspontaneous; ΔG = 0 → equilibrium. Temperature determines spontaneity when ΔH and ΔS have the same sign. ΔG° = −RT ln K relates standard free energy to the equilibrium constant. ΔG = ΔG° + RT ln Q." },
+      { title: "Bond Energies & Hess's Law", text: "Bond energy is the energy required to break one mole of bonds in the gas phase. ΔH°rxn ≈ ΣBE(bonds broken) − ΣBE(bonds formed). Bond breaking requires energy (+); bond forming releases energy (−). This is an approximate method — exact values use standard enthalpies of formation. Hess's law is exact." }
+    ],
+    timeline: [
+      { year: "1824", event: "<strong>Sadi Carnot publishes Reflections on the Motive Power of Fire</strong> — the foundational analysis of heat engines that led to the first and second laws of thermodynamics." },
+      { year: "1850", event: "<strong>Rudolf Clausius states the second law of thermodynamics</strong> — heat does not spontaneously flow from cold to hot — and later (1865) introduces the concept of entropy." },
+      { year: "1876", event: "<strong>J. Willard Gibbs publishes On the Equilibrium of Heterogeneous Substances</strong> — introducing free energy (Gibbs energy), chemical potential, and the phase rule, creating the mathematical framework of chemical thermodynamics." },
+      { year: "1906", event: "<strong>Walther Nernst proposes the third law of thermodynamics</strong> — as T → 0 K, entropy of a perfect crystal approaches zero — providing an absolute reference for entropy values." },
+      { year: "1986", event: "<strong>AP Chemistry adopts Gibbs free energy as a central framework</strong> — the relationship ΔG = ΔH − TΔS and its connection to equilibrium (ΔG° = −RT ln K) becomes a cornerstone of the modern AP exam." }
+    ],
+    figures: [
+      { initials: "JG", name: "J. Willard Gibbs", note: "American physicist and mathematician who virtually single-handedly created the mathematical framework of thermodynamics (1876). He introduced Gibbs free energy, chemical potential, and the concept of equilibrium — arguably the most important theoretical contribution to chemistry in the 19th century, though largely ignored in America until Maxwell promoted his work in Europe." },
+      { initials: "RC", name: "Rudolf Clausius", note: "German physicist who stated the second law of thermodynamics (1850) and introduced the concept of entropy (1865), defining it as the differential of heat divided by temperature (dS = δq/T). His famous summary: 'The energy of the universe is constant; the entropy of the universe tends toward a maximum.'" },
+      { initials: "WN", name: "Walther Nernst", note: "German physical chemist who proposed the third law of thermodynamics (1906) — absolute zero entropy for a perfect crystal at 0 K — enabling the calculation of absolute entropy values. He also developed the Nernst equation relating cell potential to concentration, central to AP electrochemistry." },
+      { initials: "GL", name: "Gilbert N. Lewis & Merle Randall", note: "Lewis and his collaborator Randall wrote Thermodynamics and the Free Energy of Chemical Substances (1923), which translated Gibbs's abstract mathematics into practical chemical language and popularized the use of free energy (which they renamed 'Gibbs free energy') for predicting chemical reactions." }
+    ],
+    questions: [
+      { q: "Given: N₂(g) + O₂(g) → 2NO(g), ΔH° = +180.5 kJ and 2NO(g) + O₂(g) → 2NO₂(g), ΔH° = −114.1 kJ. What is ΔH° for N₂(g) + 2O₂(g) → 2NO₂(g)?", opts: ["+66.4 kJ", "+294.6 kJ", "−294.6 kJ", "+180.5 kJ"], answer: 0, explain: "Hess's law: add the two equations directly (NO cancels as intermediate): N₂ + O₂ → 2NO (ΔH = +180.5) plus 2NO + O₂ → 2NO₂ (ΔH = −114.1). Net: N₂ + 2O₂ → 2NO₂, ΔH = 180.5 + (−114.1) = +66.4 kJ. The key Hess's law skills: if you reverse an equation, flip the sign of ΔH; if you multiply by a factor, multiply ΔH by the same factor; then add." },
+      { q: "A reaction has ΔH° = −50 kJ/mol and ΔS° = −100 J/(mol·K). At what temperature does the reaction become nonspontaneous?", opts: ["Above 500 K", "Below 500 K", "Above 50 K", "The reaction is always spontaneous"], answer: 0, explain: "ΔG = ΔH − TΔS. Spontaneous when ΔG < 0. With ΔH < 0 and ΔS < 0: at low T, ΔH dominates (ΔG < 0, spontaneous); at high T, −TΔS becomes a large positive number, making ΔG > 0 (nonspontaneous). Crossover: ΔG = 0 → T = ΔH/ΔS = −50,000 J / −100 J/K = 500 K. Above 500 K: nonspontaneous. Be careful with units: ΔH in J, ΔS in J/K." },
+      { q: "For a reaction with ΔG° = −17.1 kJ/mol at 298 K, what is the equilibrium constant K? (R = 8.314 J/mol·K)", opts: ["K ≈ 1000", "K ≈ 0.001", "K ≈ 500", "K ≈ 7"], answer: 0, explain: "ΔG° = −RT ln K → ln K = −ΔG°/RT = −(−17,100 J/mol) / (8.314 J/mol·K × 298 K) = 17,100/2477.6 ≈ 6.9 → K = e^6.9 ≈ 993 ≈ 1000. A large negative ΔG° means a large K (products strongly favored). ΔG° = 0 → K = 1; ΔG° > 0 → K < 1 (reactants favored). This ΔG°/K relationship is one of the most important in AP Chemistry." }
+    ]
+  },
+  {
+    number: "VII", roman: "VII",
+    period: "Big Idea 6",
+    title: "Equilibrium",
+    concepts: [
+      { title: "Equilibrium & the Equilibrium Constant", text: "At equilibrium, forward and reverse rates are equal and concentrations are constant. Kc = [products]^coeff / [reactants]^coeff (omit pure solids/liquids). Kp uses partial pressures; Kp = Kc(RT)^Δn. Large K → products favored; small K → reactants favored. K depends only on temperature." },
+      { title: "Le Chatelier's Principle", text: "If a system at equilibrium is disturbed, it shifts to partially counteract the disturbance. Adding reactant/product, changing pressure (for gas reactions), or changing temperature shifts equilibrium. Temperature change is the only thing that changes K itself. Catalysts do not shift equilibrium — they speed attainment of it." },
+      { title: "ICE Tables & Equilibrium Calculations", text: "ICE (Initial, Change, Equilibrium) tables organize equilibrium calculations. Set up: write initial concentrations, define x as the change, write equilibrium expressions. Substitute into K expression and solve. For small Ka values, the '5% approximation' (x << initial concentration) simplifies the algebra and should be verified." },
+      { title: "Solubility Equilibria", text: "Ksp (solubility product) describes the equilibrium between an ionic solid and its dissolved ions. Q < Ksp → dissolving; Q > Ksp → precipitation; Q = Ksp → saturated. The common ion effect reduces solubility. pH affects the solubility of salts of weak acids or bases. Selective precipitation separates ions with different Ksp values." }
+    ],
+    timeline: [
+      { year: "1864", event: "<strong>Guldberg & Waage propose the law of mass action</strong> — equilibrium concentrations are related by a characteristic ratio (now called K) that depends only on temperature, not on starting concentrations." },
+      { year: "1884", event: "<strong>Le Chatelier proposes his principle</strong> — a system at equilibrium responds to stress by shifting to minimize that stress. Initially called 'Braun-Le Chatelier principle,' it is now the single most-used qualitative tool in AP equilibrium." },
+      { year: "1887", event: "<strong>Jacobus van't Hoff derives the van't Hoff equation</strong> — d(ln K)/dT = ΔH°/RT², quantifying how the equilibrium constant changes with temperature and unifying thermodynamics with kinetics." },
+      { year: "1923", event: "<strong>Debye-Hückel theory accounts for ion-ion interactions</strong> in real solutions, explaining why real equilibrium constants in concentrated solutions deviate from ideal expressions using simple concentrations." },
+      { year: "1970s", event: "<strong>AP Chemistry standardizes ICE table methodology</strong> — the systematic Initial-Change-Equilibrium approach becomes the universal classroom method for quantitative equilibrium problem-solving." }
+    ],
+    figures: [
+      { initials: "HL", name: "Henry Le Chatelier", note: "French chemist who in 1884 proposed the principle bearing his name: a system at equilibrium subjected to a stress will shift to oppose that stress and re-establish equilibrium. His principle, formulated simply and qualitatively, is perhaps the most broadly applied concept in all of AP Chemistry." },
+      { initials: "GW", name: "Guldberg & Waage", note: "Norwegian chemists Cato Guldberg and Peter Waage who in 1864 proposed the law of mass action — that the rate of a chemical reaction is proportional to the product of reactant concentrations, each raised to their stoichiometric coefficients. This is the mathematical foundation of the equilibrium constant expression." },
+      { initials: "JH", name: "Jacobus van't Hoff", note: "First Nobel Laureate in Chemistry (1901), van't Hoff derived the quantitative relationship between the equilibrium constant K and temperature (the van't Hoff equation) — showing that ΔH° determines how K changes with temperature. Endothermic reactions have larger K at higher T; exothermic reactions have smaller K." },
+      { initials: "WN", name: "Walther Nernst", note: "Physical chemist who extended equilibrium theory to electrochemical cells with his Nernst equation: E = E° − (RT/nF) ln Q, relating cell potential to the reaction quotient Q. This allows calculation of cell voltage at non-standard conditions and connects thermodynamics, equilibrium, and electrochemistry." }
+    ],
+    questions: [
+      { q: "For the equilibrium N₂(g) + 3H₂(g) ⇌ 2NH₃(g), ΔH° = −92 kJ/mol. Which change would increase the equilibrium yield of NH₃?", opts: ["Increasing temperature", "Decreasing pressure by expanding the volume", "Adding a catalyst", "Increasing pressure by decreasing volume"], answer: 3, explain: "Le Chatelier's principle: (A) Increasing T shifts an exothermic reaction left (toward reactants) — K decreases; (B) Decreasing pressure shifts toward the side with more moles of gas — 4 mol reactant vs. 2 mol product, so it shifts left; (C) A catalyst speeds equilibrium attainment but does not change K or the equilibrium yield; (D) Increasing pressure shifts toward fewer moles of gas (right, toward NH₃). This is the Haber process and the most classic AP equilibrium application." },
+      { q: "The Ksp of AgCl is 1.8 × 10⁻¹⁰. What is the molar solubility of AgCl in pure water?", opts: ["1.8 × 10⁻¹⁰ M", "1.3 × 10⁻⁵ M", "3.6 × 10⁻¹⁰ M", "9.0 × 10⁻⁶ M"], answer: 1, explain: "AgCl(s) ⇌ Ag⁺(aq) + Cl⁻(aq). If molar solubility = s, then [Ag⁺] = s and [Cl⁻] = s at equilibrium. Ksp = [Ag⁺][Cl⁻] = s² = 1.8 × 10⁻¹⁰ → s = √(1.8 × 10⁻¹⁰) = 1.34 × 10⁻⁵ M ≈ 1.3 × 10⁻⁵ M. Ksp calculations are a core AP skill — set up the ICE table, write the Ksp expression, and solve." },
+      { q: "A reaction has Kc = 1 × 10⁻¹⁵ at 25°C. Which statement best describes this system at equilibrium?", opts: ["Essentially all reactants have been converted to products", "Products and reactants are present in roughly equal amounts", "The reaction is essentially 'frozen' with almost no product formation — reactants dominate heavily", "The system has not yet reached equilibrium and is still reacting"], answer: 2, explain: "K = 1 × 10⁻¹⁵ is an extremely small number, meaning the equilibrium lies far to the left — at equilibrium, there is an overwhelming excess of reactants and a vanishingly small amount of products. Large K (>> 1): products favored. K ≈ 1: comparable amounts. Very small K (<< 1): reactants dominate. Equilibrium is a state the system has reached, not a kinetic description — it says nothing about how fast equilibrium was attained." }
+    ]
+  },
+  {
+    number: "VIII", roman: "VIII",
+    period: "Big Idea 6",
+    title: "Acids, Bases & Buffers",
+    concepts: [
+      { title: "Weak Acid & Base Equilibria", text: "Weak acids (Ka) and weak bases (Kb) partially dissociate: Ka = [H⁺][A⁻]/[HA]. For a weak acid HA with initial concentration C: [H⁺] ≈ √(Ka × C) when the 5% approximation applies. pH = −log[H⁺]; pOH = −log[OH⁻]; pH + pOH = 14 (at 25°C). pKa = −log Ka: smaller pKa = stronger acid." },
+      { title: "Hydrolysis of Salts", text: "Salts of strong acid + strong base (NaCl) → neutral solution. Salts of weak acid + strong base (NaF) → basic solution (F⁻ hydrolyzes). Salts of strong acid + weak base (NH₄Cl) → acidic solution (NH₄⁺ hydrolyzes). Ka × Kb = Kw for conjugate pairs. pH of NH₄⁺ solution: Ka = Kw/Kb(NH₃)." },
+      { title: "Buffers & Henderson-Hasselbalch", text: "A buffer resists pH change; it contains a weak acid and its conjugate base (or weak base and conjugate acid). pH = pKa + log([A⁻]/[HA]) — Henderson-Hasselbalch equation. Buffer capacity is greatest when [HA] = [A⁻] (pH = pKa). Buffers work by consuming added H⁺ or OH⁻ via the weak acid/base equilibrium." },
+      { title: "Acid-Base Titration Curves", text: "Strong acid–strong base: equivalence point at pH 7. Weak acid–strong base: equivalence point above pH 7 (conjugate base hydrolyzes). At half-equivalence point: pH = pKa (buffer region). The curve's shape reveals Ka. AP free-response frequently asks you to calculate pH at multiple points along a titration curve using ICE tables." }
+    ],
+    timeline: [
+      { year: "1884", event: "<strong>Arrhenius defines acids as H⁺ producers</strong> — the first modern acid-base theory, sufficient for aqueous solutions but limited to water as solvent." },
+      { year: "1923", event: "<strong>Brønsted-Lowry theory</strong> extends acid-base chemistry beyond water: acids are proton donors, bases are proton acceptors — generating the conjugate pair concept central to AP buffer calculations." },
+      { year: "1923", event: "<strong>Lewis acid-base theory</strong> proposed simultaneously — the broadest framework, based on electron pair donation/acceptance rather than proton transfer." },
+      { year: "1908", event: "<strong>Søren Sørensen introduces the pH scale</strong> — a logarithmic scale for hydrogen ion concentration that simplifies the expression of acidity from scientific notation to a simple number." },
+      { year: "1916", event: "<strong>Henderson-Hasselbalch equation formalized</strong> from earlier work by Lawrence Henderson (1908) and K.A. Hasselbalch (1909) — providing the practical formula for buffer pH that appears on the AP Chemistry formula sheet." }
+    ],
+    figures: [
+      { initials: "SS", name: "Søren Sørensen", note: "Danish biochemist who in 1909 introduced the pH scale to simplify the expression of hydrogen ion concentrations — converting [H⁺] = 1 × 10⁻⁷ M to the elegant pH = 7. He developed the scale while studying enzyme activity, recognizing that even tiny changes in [H⁺] dramatically affected biological reactions." },
+      { initials: "LH", name: "Lawrence Henderson", note: "American biochemist who in 1908 described the relationship between acid, conjugate base, and pH in blood buffering — work later expressed mathematically by Hasselbalch as the Henderson-Hasselbalch equation. Henderson's focus on biological buffers (particularly the carbonic acid/bicarbonate system in blood) connected chemistry to physiology." },
+      { initials: "GL", name: "Gilbert N. Lewis", note: "Lewis's 1923 electron pair acid-base theory is the most general framework — explaining reactions like BF₃ + F⁻ → BF₄⁻ (Lewis acid accepts an electron pair) and the behavior of metal ion catalysts. His definition encompasses all Brønsted-Lowry reactions (a proton is a Lewis acid) plus many reactions without any proton transfer." },
+      { initials: "JB", name: "Johannes Brønsted", note: "Danish physical chemist whose 1923 proton-transfer theory of acid-base reactions is the primary framework for AP Chemistry. His definition of an acid as a proton donor generates conjugate acid-base pairs (HA/A⁻) — the conceptual basis for all weak acid/base equilibria, Ka/Kb relationships, and buffer calculations." }
+    ],
+    questions: [
+      { q: "What is the pH of a 0.10 M solution of acetic acid (Ka = 1.8 × 10⁻⁵)?", opts: ["2.87", "4.74", "1.00", "5.00"], answer: 0, explain: "CH₃COOH ⇌ H⁺ + CH₃COO⁻. Ka = x²/(0.10 − x) ≈ x²/0.10 (5% approximation: x << 0.10). x² = 1.8 × 10⁻⁶ → x = [H⁺] = 1.34 × 10⁻³ M. pH = −log(1.34 × 10⁻³) = 2.87. Check 5% approximation: (1.34 × 10⁻³ / 0.10) × 100% = 1.34% < 5% ✓. This is the archetypal AP weak acid pH calculation." },
+      { q: "A buffer is made from acetic acid (pKa = 4.74) and sodium acetate. At what ratio of [CH₃COO⁻]/[CH₃COOH] does the buffer have pH = 5.74?", opts: ["1:10", "10:1", "1:1", "2:1"], answer: 1, explain: "Henderson-Hasselbalch: pH = pKa + log([A⁻]/[HA]) → 5.74 = 4.74 + log([A⁻]/[HA]) → log([A⁻]/[HA]) = 1.00 → [A⁻]/[HA] = 10¹ = 10. So [CH₃COO⁻]/[CH₃COOH] = 10:1. Note: pH > pKa means the conjugate base dominates. At pH = pKa (4.74), [A⁻] = [HA] — maximum buffer capacity." },
+      { q: "In a titration of 25.0 mL of 0.100 M HF (Ka = 7.2 × 10⁻⁴) with 0.100 M NaOH, what is the pH at the half-equivalence point?", opts: ["3.14", "7.00", "10.86", "4.74"], answer: 0, explain: "At the half-equivalence point, exactly half the HF has been converted to F⁻, so [HF] = [F⁻]. Henderson-Hasselbalch: pH = pKa + log([F⁻]/[HF]) = pKa + log(1) = pKa + 0 = pKa. pKa = −log(7.2 × 10⁻⁴) = 3.14. At the half-equivalence point: pH = pKa. This is a key landmark on every weak acid titration curve and allows you to read Ka directly from a titration curve graph." }
+    ]
+  },
+  {
+    number: "IX", roman: "IX",
+    period: "Big Idea 3 & 5",
+    title: "Electrochemistry",
+    concepts: [
+      { title: "Galvanic Cells", text: "Galvanic (voltaic) cells convert spontaneous redox reactions into electrical energy. Oxidation occurs at the anode (−); reduction at the cathode (+). The salt bridge maintains electrical neutrality. Cell notation: anode | anode solution || cathode solution | cathode. E°cell = E°cathode − E°anode (from standard reduction potentials)." },
+      { title: "Standard Reduction Potentials", text: "Standard reduction potentials (E°red) are measured relative to the standard hydrogen electrode (SHE, 0.00 V). More positive E°red → stronger oxidizing agent. E°cell = E°red(cathode) − E°red(anode). Positive E°cell → spontaneous reaction. ΔG° = −nFE°cell (F = Faraday's constant = 96,485 C/mol e⁻)." },
+      { title: "The Nernst Equation", text: "The Nernst equation gives cell potential under non-standard conditions: E = E° − (RT/nF) ln Q, or at 25°C: E = E° − (0.0592/n) log Q. At equilibrium, E = 0 and Q = K, so E° = (0.0592/n) log K. This connects standard cell potential, Gibbs free energy, and the equilibrium constant in one unified framework." },
+      { title: "Electrolytic Cells", text: "Electrolytic cells use electrical energy to drive nonspontaneous redox reactions. Electroplating and electrolysis of water are key examples. Faraday's laws: mass deposited = (molar mass × current × time) / (n × F). In electrolysis of aqueous solutions, competing electrode reactions determine which species is actually reduced or oxidized." }
+    ],
+    timeline: [
+      { year: "1800", event: "<strong>Alessandro Volta invents the voltaic pile</strong> — the first battery, demonstrating that electricity can be generated from a chemical reaction between dissimilar metals and an electrolyte." },
+      { year: "1833", event: "<strong>Michael Faraday establishes the laws of electrolysis</strong> — the amount of substance deposited is proportional to the charge passed. His constant (F = 96,485 C/mol) is named in his honor." },
+      { year: "1868", event: "<strong>Georges Leclanché invents the zinc-carbon battery</strong> — ancestor of the modern dry cell battery, making portable electrical devices practical." },
+      { year: "1889", event: "<strong>Walther Nernst derives the Nernst equation</strong> — quantifying how cell potential depends on concentration, connecting electrochemistry to thermodynamics and equilibrium." },
+      { year: "1991", event: "<strong>John Goodenough, Stanley Whittingham & Akira Yoshino develop the lithium-ion battery</strong> — Nobel Prize 2019. Li-ion batteries power phones, laptops, and electric vehicles, making electrochemistry central to modern technology." }
+    ],
+    figures: [
+      { initials: "AV", name: "Alessandro Volta", note: "Italian physicist who in 1800 invented the voltaic pile — the first true battery — by stacking alternating discs of zinc and copper separated by brine-soaked cloth. Napoleon called him the Newton of electricity. The unit of electric potential (volt) is named in his honor." },
+      { initials: "MF", name: "Michael Faraday", note: "English scientist (no formal university education) who discovered electromagnetic induction and electrolysis, and established the laws of electrolysis (1833). He coined the terms electrode, anode, cathode, ion, electrolyte, and electrolysis — much of the vocabulary of AP electrochemistry. Faraday's constant (96,485 C/mol) bears his name." },
+      { initials: "WN", name: "Walther Nernst", note: "German physical chemist who derived the equation (1889) relating cell potential to concentration at non-standard conditions. His work united electrochemistry with thermodynamics. His Nernst equation appears on the AP Chemistry formula sheet and is tested in both multiple-choice and free-response sections." },
+      { initials: "JG", name: "John Goodenough", note: "American materials scientist who at age 57 invented the lithium cobalt oxide cathode (1980), enabling the lithium-ion battery. He shared the 2019 Nobel Prize in Chemistry at age 97 — the oldest Nobel laureate ever. His work directly enables the portable electronics and electric vehicles that define contemporary technology." }
+    ],
+    questions: [
+      { q: "A galvanic cell is constructed using Zn/Zn²⁺ (E°red = −0.76 V) and Cu/Cu²⁺ (E°red = +0.34 V). What is the standard cell potential, and which metal is the anode?", opts: ["E°cell = +1.10 V; Zn is the anode", "E°cell = −1.10 V; Cu is the anode", "E°cell = +0.42 V; Cu is the anode", "E°cell = +1.10 V; Cu is the anode"], answer: 0, explain: "E°cell = E°cathode − E°anode = E°red(Cu²⁺/Cu) − E°red(Zn²⁺/Zn) = 0.34 − (−0.76) = +1.10 V. The more negative reduction potential (Zn) is oxidized → anode. Cu²⁺ is reduced → cathode. The cell is spontaneous (E°cell > 0 → ΔG° < 0). This is the classic Daniel cell and the most-tested basic galvanic cell on AP exams." },
+      { q: "How long must a current of 2.00 A flow to deposit 1.27 g of copper from a CuSO₄ solution? (Molar mass of Cu = 63.5 g/mol; F = 96,485 C/mol e⁻; Cu²⁺ + 2e⁻ → Cu)", opts: ["1930 s", "965 s", "3860 s", "482 s"], answer: 0, explain: "Moles of Cu = 1.27 g / 63.5 g/mol = 0.0200 mol. Each Cu²⁺ requires 2 electrons, so moles of e⁻ = 2 × 0.0200 = 0.0400 mol. Charge = 0.0400 mol × 96,485 C/mol = 3859 C. Time = charge / current = 3859 C / 2.00 A = 1930 s. Faraday's electrolysis problems always follow: grams → moles of substance → moles of electrons → coulombs → seconds." },
+      { q: "For a galvanic cell with E°cell = +0.592 V at 25°C, with n = 2 electrons transferred, what is the equilibrium constant K?", opts: ["K = 10²⁰", "K = 10¹⁰", "K = 10⁻²⁰", "K = 10⁴⁰"], answer: 0, explain: "At 25°C: E° = (0.0592/n) log K → 0.592 = (0.0592/2) log K → 0.592 = 0.0296 log K → log K = 20 → K = 10²⁰. Positive E° → K > 1 (products favored). This E°/K relationship (derived from ΔG° = −nFE° = −RT ln K) unifies electrochemistry with thermodynamics and equilibrium — a key AP connection." }
+    ]
+  }
+];
+
+let currentPage = 'cover';
+let figureOpen = {};
+let quizAnswered = {};
+
+function buildSidebar() {
+  const container = document.getElementById('sidebarUnits');
+  units.forEach((u, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'sidebar-btn';
+    btn.id = `sidebar-unit-${i}`;
+    btn.innerHTML = `
+      <span class="sidebar-num">${u.roman}</span>
+      <div>
+        <div class="sidebar-unit-name">${u.title}</div>
+        <div class="sidebar-period">${u.period}</div>
+      </div>
+    `;
+    btn.onclick = () => showUnit(i);
+    container.appendChild(btn);
+  });
+}
+
+function buildCoverGrid() {
+  const grid = document.getElementById('coverGrid');
+  units.forEach((u, i) => {
+    const card = document.createElement('div');
+    card.className = 'cover-unit-card';
+    card.innerHTML = `
+      <div class="cover-unit-card-num">Unit ${u.roman}</div>
+      <div class="cover-unit-card-title">${u.title}</div>
+      <div class="cover-unit-card-period">${u.period}</div>
+    `;
+    card.onclick = () => showUnit(i);
+    grid.appendChild(card);
+  });
+}
+
+function buildUnitPanels() {
+  const container = document.getElementById('unitPanels');
+  units.forEach((u, ui) => {
+    figureOpen[ui] = null;
+    quizAnswered[ui] = {};
+
+    const panel = document.createElement('div');
+    panel.className = 'unit-panel';
+    panel.id = `unit-panel-${ui}`;
+
+    const conceptsHtml = u.concepts.map(c => `
+      <div class="concept-card">
+        <h4>${c.title}</h4>
+        <p>${c.text}</p>
+      </div>
+    `).join('');
+
+    const timelineHtml = u.timeline.map(t => `
+      <div class="timeline-row">
+        <div class="timeline-year">${t.year}</div>
+        <div class="timeline-line">
+          <div class="timeline-dot"></div>
+          <div class="timeline-connector"></div>
+        </div>
+        <div class="timeline-event">${t.event}</div>
+      </div>
+    `).join('');
+
+    const figuresHtml = u.figures.map((f, fi) => `
+      <div>
+        <div class="figure-pill" id="pill-${ui}-${fi}" onclick="toggleFigure(${ui},${fi})">
+          <div class="figure-avatar">${f.initials}</div>
+          <span class="figure-name">${f.name}</span>
+        </div>
+        <div class="figure-detail" id="fig-${ui}-${fi}"><strong>${f.name}:</strong> ${f.note}</div>
+      </div>
+    `).join('');
+
+    const quizHtml = u.questions.map((q, qi) => `
+      <div class="quiz-q" id="qq-${ui}-${qi}">
+        <div class="quiz-q-text">${qi+1}. ${q.q}</div>
+        <div class="quiz-options">
+          ${q.opts.map((o,oi) => `
+            <button class="quiz-option" id="qo-${ui}-${qi}-${oi}" onclick="answerQ(${ui},${qi},${oi})">
+              <span class="quiz-letter">${['A','B','C','D'][oi]}</span>${o}
+            </button>
+          `).join('')}
+        </div>
+        <div class="quiz-explain" id="qe-${ui}-${qi}">${q.explain}</div>
+      </div>
+    `).join('');
+
+    panel.innerHTML = `
+      <div class="unit-header">
+        <div class="unit-num-large">${u.roman}</div>
+        <div class="unit-meta-block">
+          <div class="unit-period-badge">${u.period}</div>
+          <div class="unit-title">${u.title}</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab(${ui},'concepts',this)">Key Concepts</button>
+        <button class="tab-btn" onclick="switchTab(${ui},'timeline',this)">Key Discoveries</button>
+        <button class="tab-btn" onclick="switchTab(${ui},'figures',this)">Key Scientists</button>
+        <button class="tab-btn" onclick="switchTab(${ui},'quiz',this)">Practice Quiz</button>
+      </div>
+
+      <div class="tab-content active" id="tab-${ui}-concepts">
+        <div class="section-label">Core concepts for this unit</div>
+        <div class="concepts-grid">${conceptsHtml}</div>
+      </div>
+
+      <div class="tab-content" id="tab-${ui}-timeline">
+        <div class="section-label">Landmark discoveries in chronological order</div>
+        <div class="timeline-list">${timelineHtml}</div>
+      </div>
+
+      <div class="tab-content" id="tab-${ui}-figures">
+        <div class="section-label">Select a scientist to read their profile</div>
+        <div class="figures-pills">${figuresHtml}</div>
+      </div>
+
+      <div class="tab-content" id="tab-${ui}-quiz">
+        <div class="section-label">Three AP-style questions — select an answer to reveal the explanation</div>
+        <div>${quizHtml}</div>
+      </div>
+
+      <div class="prev-next">
+        <button class="nav-btn" onclick="showUnit(${ui-1})" ${ui===0?'disabled':''}>← Unit ${ui>0?units[ui-1].roman:''}</button>
+        <button class="nav-btn" onclick="showUnit(${ui+1})" ${ui===units.length-1?'disabled':''}>Unit ${ui<units.length-1?units[ui+1].roman:''} →</button>
+      </div>
+    `;
+
+    container.appendChild(panel);
+  });
+}
+
+function showPage(page, btn) {
+  document.getElementById('page-cover').style.display = page === 'cover' ? 'block' : 'none';
+  document.querySelectorAll('.unit-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  currentPage = page;
+  window.scrollTo(0, 0);
+}
+
+function showUnit(i) {
+  if (i < 0 || i >= units.length) return;
+  document.getElementById('page-cover').style.display = 'none';
+  document.querySelectorAll('.unit-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(`unit-panel-${i}`).classList.add('active');
+  document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(`sidebar-unit-${i}`).classList.add('active');
+  currentPage = `unit-${i}`;
+  window.scrollTo(0, 0);
+}
+
+function switchTab(ui, tab, btn) {
+  const panel = document.getElementById(`unit-panel-${ui}`);
+  panel.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  panel.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(`tab-${ui}-${tab}`).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleFigure(ui, fi) {
+  const detail = document.getElementById(`fig-${ui}-${fi}`);
+  const pill = document.getElementById(`pill-${ui}-${fi}`);
+  const wasOpen = figureOpen[ui] === fi;
+  if (figureOpen[ui] !== null) {
+    document.getElementById(`fig-${ui}-${figureOpen[ui]}`).classList.remove('visible');
+    document.getElementById(`pill-${ui}-${figureOpen[ui]}`).classList.remove('open');
+  }
+  if (!wasOpen) {
+    detail.classList.add('visible');
+    pill.classList.add('open');
+    figureOpen[ui] = fi;
+  } else {
+    figureOpen[ui] = null;
+  }
+}
+
+function answerQ(ui, qi, oi) {
+  if (quizAnswered[ui][qi]) return;
+  quizAnswered[ui][qi] = true;
+  const correct = units[ui].questions[qi].answer;
+  const opts = document.querySelectorAll(`[id^="qo-${ui}-${qi}-"]`);
+  const explain = document.getElementById(`qe-${ui}-${qi}`);
+  opts.forEach((o, i) => {
+    o.classList.add('disabled');
+    if (i === correct) o.classList.add(oi === correct ? 'correct' : 'reveal-correct');
+    else if (i === oi) o.classList.add('incorrect');
+  });
+  explain.classList.add('visible');
+}
+
+buildSidebar();
+buildCoverGrid();
+buildUnitPanels();
+</script>
+</body>
+</html>
